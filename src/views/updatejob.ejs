@@ -1,0 +1,133 @@
+<div><div class="container p-3 mx-auto w-50 form-box my-5 rounded-md">
+    <h2 style="color: #181642" class="text-center mb-3">Update Job</h2>
+    <form action="/job/update/<%= job.id%>" method="POST">
+      <div class="input-group mb-3">
+        <select
+          required
+          name="job_category"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option disabled >Select new job category</option>
+          <option  value="Tech">Tech</option>
+          <option  value="Non-Tech">Non Tech</option>
+        </select>
+      </div>
+  
+      <div class="input-group mb-3">
+        <select
+          required
+          name="job_designation"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option value="<%= job.designation %>" disabled>
+            select new job designation
+          </option>
+          <option <% if(job.skills_required.includes("HR")){ %> selected <% } %> value="HR">HR</option>
+          <option <% if(job.skills_required.includes("SDE")){ %> selected <% } %> value="SDE">SDE</option>
+          <option <% if(job.skills_required.includes("DevOps")){ %> selected <% } %> value="DevOps">DevOps</option>
+          <option <% if(job.skills_required.includes("MERN Developer")){ %> selected <% } %> value="MERN Developer">MERN Developer</option>
+          <option <% if(job.skills_required.includes("MEAN Developer")){ %> selected <% } %> value="MEAN Developer">MEAN Developer</option>
+          <option <% if(job.skills_required.includes("JAVA Developer")){ %> selected <% } %> value="JAVA Developer">JAVA Developer</option>
+          <option <% if(job.skills_required.includes("Front-End Developer")){ %> selected <% } %> value="Front-End Developer">Front-End Developer</option>
+          <option <% if(job.skills_required.includes("Back-End Developer")){ %> selected <% } %> value="Back-End Developer">Back-End Developer</option>
+          <option <% if(job.skills_required.includes("Full-Stack Developer")){ %> selected <% } %> value="Full-Stack Developer">Full-Stack Developer</option>
+        </select>
+      </div>
+  
+      <div class="mb-3">
+        <label for="basic-url" class="form-label">Enter job location</label>
+        <div class="input-group">
+          <input value="<%= job.job_location %>"
+            required
+            name="job_location"
+            type="text"
+            class="form-control"
+            id="basic-url"
+            aria-describedby="basic-addon3 basic-addon4"
+          />
+        </div>
+      </div>
+  
+      <div class="input-group mb-3">
+        <span class="input-group-text">Company Name</span>
+        <input
+          value="<%= job.company_name %>"
+          required
+          name="company_name"
+          type="text"
+          class="form-control"
+          aria-label="Amount (to the nearest dollar)"
+        />
+      </div>
+  
+      <div class="input-group mb-3">
+        <input
+          value="<%= job.salary %>"
+          required
+          name="salary"
+          type="text"
+          class="form-control"
+          placeholder="enter salary"
+          aria-label="Username"
+        />
+        <span class="input-group-text">Total Positions</span>
+        <input
+          value="<%= job.number_of_openings %>"
+          required
+          name="number_of_openings"
+          type="number"
+          class="form-control"
+          placeholder="total no of openings"
+          aria-label="Server"
+        />
+      </div>
+      <div class="input-group mb-3">
+        <select
+          required
+          multiple
+          name="skills_required"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option disabled>select skills required for this job</option>
+          <option <% if(job.skills_required.includes('React')){ %> selected <% } %> value="React">React</option>
+          <option <% if(job.skills_required.includes('NodeJs')){ %> selected <% } %> value="NodeJs">NodeJs</option>
+          <option <% if(job.skills_required.includes('Angular')){ %> selected <% } %> value="Angular">Angular</option>
+          <option <% if(job.skills_required.includes('MongoDB')){ %> selected <% } %> value="MongoDB">MongoDB</option>
+          <option <% if(job.skills_required.includes('SQL')){ %> selected <% } %> value="SQL">SQL</option>
+          <option <% if(job.skills_required.includes('Express')){ %> selected <% } %> value="Express">Express</option>
+          <option <% if(job.skills_required.includes('Java')){ %> selected <% } %> value="Java">Java</option>
+          <option <% if(job.skills_required.includes('SpringBoot')){ %> selected <% } %> value="SpringBoot">SpringBoot</option>
+          <option <% if(job.skills_required.includes('C++')){ %> selected <% } %> value="C++">C++</option>
+          <option <% if(job.skills_required.includes('Data Structures & Algo')){ %> selected <% } %> value="Data Structures & Algo">Data Structures & Algo</option>
+        </select>
+        <span class="input-group-text">Applly By</span>
+        <input
+          value="<%= job.apply_by %>"
+          name="apply_by"
+          type="date"
+          class="form-control"
+          placeholder="total no of openings"
+          aria-label="Server"
+        />
+      </div>
+      <button class="w-100 mb-3 mt-2 btn btn-md btn-success" onclick="updateJob('<%= job.id %>')" type="submit">
+        Update
+      </button>
+    </form>
+  </div>
+  </div>
+  
+  <script>
+    function updateJob(id){
+      console.log(id);
+      const result = confirm("Are you sure you want to update job");
+      if (!result){
+          event.preventDefault();
+          location.reload();
+      }
+  
+  }
+  </script>
